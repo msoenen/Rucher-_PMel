@@ -1,6 +1,6 @@
 // Remplacez par votre URL Apps Script JSON
-const JSON_URL = "VOTRE_URL_APPS_SCRIPT?action=status";
-const CHART_URL_BASE = "VOTRE_URL_APPS_SCRIPT";
+const JSON_URL =  "https://script.google.com/macros/s/AKfycbwrduUomAgwEfmSvemSDp48cRHVhxGiSb56PORgfXSOpPh2Sl65MFra0HytSo4sZwjg/exec?action=status";
+const CHART_URL_BASE = "https://script.google.com/macros/s/AKfycbwrduUomAgwEfmSvemSDp48cRHVhxGiSb56PORgfXSOpPh2Sl65MFra0HytSo4sZwjg/exec";
 
 let currentTab = "dashboard";
 let currentMetric = "poids";
