@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RucherPMel</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Rucher</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>Mon Rucher</h1>
-  <div id="status">Chargement...</div>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="title">🐝 Mon Rucher</div>
+      <div class="top-actions">
+        <button id="refreshBtn" class="btn primary">Actualiser</button>
+      </div>
+    </header>
+
+    <div id="banner" class="alert-banner hidden"></div>
+
+    <section class="header-row">
+      <div class="pill">
+        <div class="pill-value" id="topTemp">--</div>
+        <div class="pill-sub">Température extérieure</div>
+      </div>
+      <div class="pill">
+        <div class="pill-value" id="topDate">--</div>
+        <div class="pill-sub">Dernière mesure</div>
+      </div>
+      <div class="pill">
+        <div class="pill-value" id="topAlerts">--</div>
+        <div class="pill-sub">Alertes</div>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="poids">Poids</button>
+      <button class="tab" data-tab="temp">Température</button>
+    </nav>
+
+    <main class="panel">
+      <section id="dashboardTab">
+        <div class="dashboard-grid" id="dashboardGrid"></div>
+        <div class="cards-grid" id="cards"></div>
+      </section>
+
+      <section id="chartTab" class="hidden">
+        <div class="section-title" id="chartTitle">Évolution du Poids</div>
+        <div class="section-sub">Sélection des ruches</div>
+
+        <div class="periods">
+          <button class="btn period-btn" data-period="1h">1h</button>
+          <button class="btn period-btn" data-period="12h">12h</button>
+          <button class="btn period-btn" data-period="24h">24h</button>
+          <button class="btn period-btn active" data-period="7j">7j</button>
+          <button class="btn period-btn" data-period="15j">15j</button>
+          <button class="btn period-btn" data-period="1m">1m</button>
+          <button class="btn period-btn" data-period="6m">6m</button>
+          <button class="btn period-btn" data-period="1a">1a</button>
+          <button class="btn period-btn" data-period="max">max</button>
+        </div>
+
+        <div class="chart-type">
+          <button class="btn type-btn active" data-type="line">Ligne</button>
+          <button class="btn type-btn" data-type="bar">Barres</button>
+        </div>
+
+        <div class="hives" id="hiveButtons"></div>
+
+        <div class="chart-wrap">
+          <canvas id="mainChart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="detailModal">
+    <div class="modal-box">
+      <div class="modal-top">
+        <div class="section-title" id="detailTitle">Ruche</div>
+        <button class="btn" id="closeDetailBtn">Fermer</button>
+      </div>
+      <div class="detail-chart">
+        <canvas id="detailWeightChart"></canvas>
+      </div>
+      <div class="detail-chart">
+        <canvas id="detailTempChart"></canvas>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
